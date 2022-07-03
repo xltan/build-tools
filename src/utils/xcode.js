@@ -10,8 +10,10 @@ const { color, fatal } = require('./logging');
 const XcodeDir = path.resolve(__dirname, '..', '..', 'third_party', 'Xcode');
 const XcodePath = path.resolve(XcodeDir, 'Xcode.app');
 const XcodeZip = path.resolve(XcodeDir, 'Xcode.zip');
-const XcodeBaseURL = `${process.env.ELECTRON_BUILD_TOOLS_MIRROR ||
-  'https://electron-build-tools.s3-us-west-2.amazonaws.com'}/macos/`;
+const XcodeBaseURL = `${
+  process.env.ELECTRON_BUILD_TOOLS_MIRROR ||
+  'https://electron-build-tools.s3-us-west-2.amazonaws.com'
+}/macos/`;
 
 const XcodeVersions = {
   '9.4.1': {
@@ -199,13 +201,13 @@ function ensureXcode() {
 
 function hashFile(file) {
   console.log(`Calculating hash for ${color.path(file)}`);
-  return childProcess
-    .spawnSync('md5', ['-q', file])
-    .stdout.toString()
-    .trim();
+  return childProcess.spawnSync('md5', ['-q', file]).stdout.toString().trim();
 }
 
+const CIXcodePath = path.resolve('/Applications/Xcode_12.4.app');
+const CIEnsureXcode = () => true;
+
 module.exports = {
-  XcodePath,
-  ensureXcode,
+  XcodePath: CIXcodePath,
+  ensureXcode: CIEnsureXcode,
 };
