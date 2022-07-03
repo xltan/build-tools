@@ -48,6 +48,7 @@ jobs:
         run: |
           shopt -s expand_aliases
           alias e=build-tools/run.js
+          e init release -i release --root=electron --fork xltan/electron
 
       - name: Init
         run: |
