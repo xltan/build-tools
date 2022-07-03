@@ -5,6 +5,9 @@
     "node": ">= 12.20.0"
   },
   "main": "null",
+  "bin": {
+    "e": "./run.js"
+  },
   "private": true,
   "scripts": {
     "lint": "prettier --check \"src/**/*.js\" \"tests/*.js\" \"src/e\"",
