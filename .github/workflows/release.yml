@@ -37,11 +37,18 @@ jobs:
           node-version: 16
           architecture: ${{ matrix.settings.arch }}
 
+      - uses: sinoru/actions-setup-xcode@v2
+        with:
+          xcode-version: '12.4'
+
       - name: Install dependencies
         run: xcodebuild -version
 
-      - name: Build
+      - name: Alias
         run: |
-          alias e build-tools/run.js
+          alias e=build-tools/run.js
+
+      - name: Init
+        run: |
           e init release -i release --root=electron --fork xltan/electron
 
