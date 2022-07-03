@@ -11,8 +11,8 @@ jobs:
         settings:
           - host: macos-latest
             name: "darwin-x64"
-          - host: windows-latest
-            name: "win32-ia32"
+          # - host: windows-latest
+          #   name: "win32-ia32"
 
     name: stable - ${{ matrix.settings.name }} - node@16
     runs-on: ${{ matrix.settings.host }}
@@ -46,6 +46,7 @@ jobs:
 
       - name: Alias
         run: |
+          shopt -s expand_aliases
           alias e=build-tools/run.js
 
       - name: Init
